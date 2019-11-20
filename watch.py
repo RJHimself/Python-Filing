@@ -4,15 +4,16 @@ import time
 
 result = None
 
-def background_calculation():
-    # here goes some long calculation
-    time.sleep(random() * 5 * 60)
-
-    # when the calculation is done, the result is stored in a global variable
-    global result
-    result = 42
 
 def wait_end_of_changes(target, timeout):
+    def background_calculation():
+        # here goes some long calculation
+        time.sleep(random() * 5 * 60)
+
+        # when the calculation is done, the result is stored in a global variable
+        global result
+        result = 42
+
     thread = threading.Thread(target=background_calculation)
     thread.start()
 
